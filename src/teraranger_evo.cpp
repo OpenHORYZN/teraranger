@@ -9,13 +9,15 @@ TerarangerEvo::TerarangerEvo()
   ros::NodeHandle private_node_handle_("~");
   private_node_handle_.param("portname", portname_,
                               std::string("/dev/ttyACM0"));
+  private_node_handle_.param("topic", topic_,
+                              std::string("/teraranger_evo"));
   ns_ = ros::this_node::getNamespace();
   ns_ = ros::names::clean(ns_);
   ROS_INFO("node namespace: [%s]", ns_.c_str());
   private_node_handle_.param("frame_id", frame_id_, std::string("base_range"));
 
   //Publishers
-  range_publisher_ = nh_.advertise<sensor_msgs::Range>("teraranger_evo", 2);
+  range_publisher_ = nh_.advertise<sensor_msgs::Range>(topic_, 2);
 
   // Serial Port init
   serial_port_.setPort(portname_);
