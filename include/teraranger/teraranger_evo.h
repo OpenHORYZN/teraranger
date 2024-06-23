@@ -48,6 +48,7 @@ class TerarangerEvo
     boost::function<void(uint8_t)> serial_data_callback_function_;
 
     std::string portname_;
+    std::string topic_;
     std::string frame_id_;
     std::string ns_;
     std::string sensor_type_;
